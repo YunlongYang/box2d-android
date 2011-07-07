@@ -1,0 +1,15 @@
+This JNI implementation of the Box2D physics library is extracted from
+the libgdx game framework.
+
+The transformation is performed by the perl script import.pl.  It copies
+all relevant files out of libgdx and also automatically changes the
+package names from 'com.badlogic.gdx.physics.box2d' to simply 'box2d'.
+The libgdx implementation of Box2D pulls in some data structures from
+libgdx itself (Vector2, LongMap etc.).  Those files and their
+dependencies are also moved over to the box2d package.
+
+No code changes are made to the Box2D JNI implementation itself.  The
+full credit goes to the developers at libgdx.  This libBox2d library is
+merely a convenience library that I have built in order to use it as a
+replacement for JBox2D without pulling too much stuff I don't care for
+from libgdx.
