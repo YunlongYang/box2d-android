@@ -309,7 +309,7 @@ public class Array<T> implements Iterable<T> {
 
 	static public class ArrayIterator<T> implements Iterator<T> {
 		private final Array<T> array;
-		int index;
+		public int index;
 
 		public ArrayIterator (Array<T> array) {
 			this.array = array;
