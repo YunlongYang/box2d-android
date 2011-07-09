@@ -19,11 +19,8 @@
  ******************************************************************************/
 package box2d;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-import box2d.Vector2;
 import box2d.JointDef.JointType;
 import box2d.joints.DistanceJoint;
 import box2d.joints.DistanceJointDef;
@@ -43,9 +40,6 @@ import box2d.joints.RevoluteJoint;
 import box2d.joints.RevoluteJointDef;
 import box2d.joints.WeldJoint;
 import box2d.joints.WeldJointDef;
-import box2d.Disposable;
-import box2d.LongMap;
-import box2d.Pool;
 
 /**
  * The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient
@@ -472,14 +466,14 @@ public class World implements Disposable {
 // b2Contact* GetContactList();
 
 	private long[] contactAddrs = new long[200];
-	private final ArrayList<Contact> contacts = new ArrayList<Contact>();
-	private final ArrayList<Contact> freeContacts = new ArrayList<Contact>();
+	private final Array<Contact> contacts = new Array<Contact>();
+	private final Array<Contact> freeContacts = new Array<Contact>();
 
-	public List<Contact> getContactList () {
+	public Array<Contact> getContactList () {
 		int numContacts = getContactCount();
 		if (numContacts > contactAddrs.length) contactAddrs = new long[numContacts];
-		if (numContacts > freeContacts.size()) {
-			int freeConts = freeContacts.size();
+		if (numContacts > freeContacts.size) {
+			int freeConts = freeContacts.size;
 			for (int i = 0; i < numContacts - freeConts; i++)
 				freeContacts.add(new Contact(this, 0));
 		}
