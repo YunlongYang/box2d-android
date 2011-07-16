@@ -215,7 +215,9 @@ sub fix_changes_in_java_files
         &print_modified_notice($file);
         for (@lines)
         {
-            print $file $_;
+            chomp;
+            s/\r//;
+            print $file "$_\n";
         }
         close($file);
     }
@@ -234,8 +236,9 @@ sub fix_changes_in_c_files
         {
             $from =~ s/\./_/;
             $to =~ s/\./_/;
+            my $prevline = $line;
             $line =~ s/$from/$to/;
-            $modified = 1;
+            $modified = ($line ne $prevline);
         }
     }
     close($file);
@@ -247,7 +250,9 @@ sub fix_changes_in_c_files
         &print_modified_notice($file);
         for (@lines)
         {
-            print $file $_;
+            chomp;
+            s/\r//;
+            print $file "$_\n";
         }
         close($file);
     }
@@ -285,6 +290,7 @@ sub copy_and_prepend
     while (<$fh_from>)
     {
         chomp;
+        s/\r$//;
         print $fh_to "$_\n";
     }
 
