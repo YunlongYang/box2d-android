@@ -238,7 +238,7 @@ sub fix_changes_in_c_files
             $to =~ s/\./_/;
             my $prevline = $line;
             $line =~ s/$from/$to/;
-            $modified = ($line ne $prevline);
+            $modified = $modified || ($line ne $prevline);
         }
     }
     close($file);
