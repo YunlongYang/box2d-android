@@ -1,2 +1,3 @@
+include ':box2d-android'
 include ':app'
 rootProject.name = "box2d-android"
